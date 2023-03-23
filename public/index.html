@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Example</title>
+</head>
+<body>
+  <h1>Products</h1>
+  <ul id="products"></ul>
+
+  <script>
+    fetch('/data')
+      .then(response => response.json())
+      .then(data => {
+        const products = data.products;
+        const productList = document.getElementById('products');
+
+        products.forEach(product => {
+          const li = document.createElement('li');
+          li.textContent = `${product.name} - $${product.price}`;
+          productList.appendChild(li);
+        });
+      })
+      .catch(error => console.error(error));
+  </script>
+</body>
+</html>
