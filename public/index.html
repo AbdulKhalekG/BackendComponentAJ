@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+   <title>AJComponents</title>
+   <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="boton.js"></script>
+  <script src="edit.js"></script>
+  <script src="dialog2.js"></script>
+
+</head>
+
+<body>    
+
+    <h1>Products</h1>
+  <ul id="products"></ul>
+
+  <script>
+    fetch('/data')
+      .then(response => response.json())
+      .then(data => {
+        const products = data.products;
+        const productList = document.getElementById('products');
+
+        products.forEach(product => {
+          const li = document.createElement('li');
+          li.textContent = `${product.name} - $${product.price}`;
+          productList.appendChild(li);
+        });
+      })
+      .catch(error => console.error(error));
+  </script>
+       
+   <script>
+       let b = new EditElement({
+        id : 'myedit',
+        style: {
+            'width':'100px',
+            'height':'30px',
+            'background-color':'green',
+            'color':'white'
+        },
+        event:{
+            'click':()=>{
+                console.log('limpia');
+                b.clear();
+            }
+        }
+       });
+       b.addToBody();
+       b.value='Hola';
+
+   </script>
+
+<script>
+    let a = new DialogElement({
+     id : 'mydialog',
+     
+     style: {
+         
+         'width':'50px',
+         'height':'30px',
+         'background-color':'red',
+         'color':'black'
+     },
+     event:{
+         'click':()=>{
+             a.getConfirmation();
+         }
+     }
+    });
+    a.addToBody();
+    a.value='click me';
+
+</script>
+
+</body>
+
+</html>
