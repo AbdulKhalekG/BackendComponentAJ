@@ -1,26 +1,21 @@
-const { Client } = require('pg');
-const fs = require('fs');
+const { Pool } = require('pg');
+const { readFileSync } = require('fs');
+const express = require('express');
+const path = require('path');
 
-function connectToDB() {
-  // Read the contents of config.json
-  let rawdata = fs.readFileSync('config.json');
-  let config = JSON.parse(rawdata);
+const configPath = path.join(__dirname, 'config.json');
+const config = JSON.parse(readFileSync(configPath, 'utf8'));
+const pool = new Pool(config);
 
-  // Create a new PostgresSQL client with the config settings
-  const client = new Client({
-    user: config.username,
-    host: config.host,
-    database: config.database,
-    password: config.password,
-    port: config.port,
-  });
+const app = express();
 
-  // Connect to the database
-  client.connect();
+const Port =process.env.PORT || 5000;
+app.listen(Port, () => {
+    console.log('Servidor a la espera de conexiones')
+});
 
-  return client;
-}
+pool.connect((err, client, done) => {
+    if (err) throw err;
 
-module.exports = {
-  connectToDB: connectToDB
-};
+        
+    });
