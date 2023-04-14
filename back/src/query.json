@@ -1,0 +1,7 @@
+{
+    "insert_user_query": "INSERT INTO usuarios (nombre, username, correo,clave) VALUES($1, $2, $3, $4)",
+    "update_user_query": "UPDATE usuarios SET nombre=$1, username=$2, correo=$3, clave=$4 WHERE id_usuario=$5",
+    "select_user_query": "SELECT * FROM usuarios WHERE username=$1",
+    "select_user_by_id_query": "SELECT * FROM usuarios WHERE id_usuario=$1"
+
+}
