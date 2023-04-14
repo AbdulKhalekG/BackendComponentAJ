@@ -1,7 +1,7 @@
-const createuser = require('../database')
-const modifyuser=require('../database')
-const searchuserid=require('../database')
-const searchusername=require('../database')
+const createuser = require('../sentence')
+const modifyuser=require('../sentence')
+const searchuserid=require('../sentence')
+const searchusername=require('../sentence')
 
 
 //este constante esta vacia para las instancias

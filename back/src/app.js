@@ -29,6 +29,8 @@ passport.serializeUser((user, done) => {
 
   app.use(passport.initialize())
     app.use(passport.session());
+
+    
 //router
 
 app.use( require('./routes/index.routes'))
