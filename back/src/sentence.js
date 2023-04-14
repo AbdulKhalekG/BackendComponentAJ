@@ -2,6 +2,7 @@ const { Pool } = require('pg')
 const  helpers  = require('./helpers')
 const user_query = require('./query.json').insert_user_query;
 const query = require('./query.json').update_user_query;
+const select_query = require('./query.json').select_user_query;
 
 const config={
     user:'postgres',
